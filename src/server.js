@@ -9,11 +9,15 @@ const db = require('./database/models/index');
 
 
 // *****MY APP*******
-
-const app = express()
-app.use(express.urlencoded({ extended: true }))
 const PORT = 3000
 
+// Middlewares used in app instance
+const app = express()
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+
+
+// Database connection
 db.mongoose.connect(db.url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -23,6 +27,8 @@ db.mongoose.connect(db.url, {
     })
     .catch((err) => { console.log(err) })
 
+
+// Custom Middlewares used in app instance. 
 app.use('/events', eventRoutes);
 app.use('/user', userRoutes);
 app.use('/messages', messageRoutes);

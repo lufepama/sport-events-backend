@@ -9,3 +9,4 @@ db.url = dbConfig.url;
 db.events = require('./eventsModel')(mongoose)
 
 module.exports = db;
+

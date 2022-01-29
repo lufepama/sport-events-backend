@@ -1,0 +1,22 @@
+// Get all events
+###
+GET http://localhost:3000/events/get-all-events
+
+###
+
+// Create an new event
+POST http://localhost:3000/events/create-new-event HTTP/1.1
+Content-Type: application/json
+
+{
+    "sport": "football",
+    "userOrganizerId": "data.userOrganizerId",
+    "duration": "data.duration",
+    "participants":2,
+    "isExpired": "false"
+}
+###
+
+PUT http://localhost:3000/events/update-event-expiration/61f4a8514c2757e3231d6aa8 HTTP/1.1
+
+###
