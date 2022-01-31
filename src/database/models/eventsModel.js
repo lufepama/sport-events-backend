@@ -1,5 +1,3 @@
-const { Timestamp, Int32 } = require("mongodb");
-
 module.exports = (mongoose) => {
     let schema = mongoose.Schema({
         sport: String,

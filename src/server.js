@@ -4,6 +4,7 @@ const eventRoutes = require('./routes/events');
 const userRoutes = require('./routes/users')
 const messageRoutes = require('./routes/messages')
 const db = require('./database/models/index');
+const bodyParser = require('body-parser')
 // ******END IMPORTS********
 
 
@@ -29,9 +30,9 @@ db.mongoose.connect(db.url, {
 
 
 // Custom Middlewares used in app instance. 
-app.use('/events', eventRoutes);
-app.use('/user', userRoutes);
-app.use('/messages', messageRoutes);
+app.use('/api/events', eventRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/messages', messageRoutes);
 
 
 app.listen(PORT, () => {
