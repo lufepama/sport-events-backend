@@ -1,19 +1,22 @@
 const routes = require('express').Router()
+const mwAuth = require('./../../middleware/validationAuth')
+const messagesController = require('./../../controller/messagesController')
 
-routes.get('/', (req, res) => {
-    res.status(200).json({ message: 'Home messages' })
-})
+
+routes.post('/send-message',
+    mwAuth.tokenValidation,
+    messagesController.sendMessage
+)
+
+routes.delete('/delete-message',
+    mwAuth.tokenValidation,
+    messagesController.deleteMessage
+)
 
 routes.get('/get-all-messages', (req, res) => {
     res.status(200).json({ message: 'Home user' })
 })
 
-routes.post('/send-message', (req, res) => {
-    res.status(201).json({ message: 'Home user' })
-})
 
-routes.delete('/delete-message', (req, res) => {
-    res.status(201).json()
-})
 
 module.exports = routes

@@ -45,7 +45,7 @@ exports.passwordValidation = async (req, res, next) => {
             const passwdIsValid = bcrypt.compareSync(passwd, user.password)
 
             if (!passwdIsValid) {
-                res.status(404).send({ error: 'El usuario o la password son incorrectas...' })
+                res.status(200).send({ error: 'El usuario o la password son incorrectas' })
                 return
             }
             req.user = user
@@ -68,7 +68,7 @@ exports.checkUserIsDuplicate = async (req, res, next) => {
                 next()
                 return;
             }
-            res.status(200).send({ message: 'Problema... el usuario ya esta en uso' })
+            res.status(200).send({ message: 'Problema... el usuario ya esta en uso', duplicate: true })
         })
 }
 
@@ -84,7 +84,6 @@ exports.tokenValidation = async (req, res, next) => {
         if (err) {
             return res.status(401).send({ message: "No tienes autorizacion...!" });
         }
-
         req.userId = decoded.id
         next()
     })

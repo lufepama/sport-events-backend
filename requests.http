@@ -1,11 +1,20 @@
 // Get all events
+
+GET http://localhost:8080/api/events HTTP/1.1
+
 ###
-GET http://localhost:3000/api/events/get-all-events
+GET http://localhost:8080/api/events/get-all-events HTTP/1.1
+
+###
+
+GET http://localhost:8080/api/events/get-single-event/61f4a8514c2757e3231d6aa8 HTTP/1.1
+x-access-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjcxZjkxNDkyMmU0Nzc3ZTNjNTJjZSIsImlhdCI6MTY0MzU5MDkzMX0.-0GBSvkom-A2x3hyF98rJHEpHMXX5_nmXY_-JKfqN5s
+
 
 ###
 
 // Create an new event
-POST http://localhost:3000/api/events/create-new-event HTTP/1.1
+POST http://localhost:8080/api/events/create-new-event HTTP/1.1
 Content-Type: application/json
 
 {
@@ -17,12 +26,12 @@ Content-Type: application/json
 }
 ###
 
-PUT http://localhost:3000/api/events/update-event-expiration/61f4a8514c2757e3231d6aa8 HTTP/1.1
+PUT http://localhost:8080/api/events/update-event-expiration/61f4a8514c2757e3231d6aa8 HTTP/1.1
 
 ###
 
 
-POST http://localhost:3000/api/users/register HTTP/1.1
+POST http://localhost:8080/api/users/register HTTP/1.1
 Content-Type: application/json
 
 {
@@ -33,7 +42,7 @@ Content-Type: application/json
 }
 ###
 
-POST http://localhost:3000/api/users/signin HTTP/1.1
+POST http://localhost:8080/api/users/signin HTTP/1.1
 Content-Type: application/json
 
 {
@@ -42,12 +51,21 @@ Content-Type: application/json
 }
 ###
 
-PUT http://localhost:3000/api/users/reset-password HTTP/1.1
+PUT http://localhost:8080/api/users/reset-password HTTP/1.1
 Content-Type: application/json
 x-access-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjcxZjkxNDkyMmU0Nzc3ZTNjNTJjZSIsImlhdCI6MTY0MzU5MDkzMX0.-0GBSvkom-A2x3hyF98rJHEpHMXX5_nmXY_-JKfqN5s
 
 {
     "username":"martina",
     "newPasswd": "trialreset"
+}
+###
+
+GET http://localhost:8080/api/messages/get-all-messages HTTP/1.1
+x-access-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjcxZjkxNDkyMmU0Nzc3ZTNjNTJjZSIsImlhdCI6MTY0MzU5MDkzMX0.-0GBSvkom-A2x3hyF98rJHEpHMXX5_nmXY_-JKfqN5s
+
+{
+    "username": "martina",
+    "password": "trial"
 }
 ###

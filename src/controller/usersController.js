@@ -22,13 +22,14 @@ exports.signup = async (req, res) => {
 
         })
 
+        res.status(200).json({ message: 'Register user' })
+
 
     } catch (error) {
         res.status(400).json({ message: `Problemon... ${error}` })
 
     }
 
-    res.status(200).json({ message: 'Register user' })
 }
 
 exports.signin = async (req, res) => {
@@ -38,7 +39,6 @@ exports.signin = async (req, res) => {
     try {
 
         const tokenJWT = jwt.sign({ id: req.user._id }, config.secret)
-
 
         return res.status(200).json({
             message: 'Sign in !!!!',
