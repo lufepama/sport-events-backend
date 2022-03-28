@@ -1,6 +1,7 @@
 const routes = require('express').Router();
 const events = require('../../controller/eventsController')
 const mwAuth = require('../../middleware/validationAuth')
+const joinEvnt = require('../../middleware/events/validationJoiningParticipants')
 
 routes.get('/', (req, res) => {
     res.status(200).json({ message: 'Home' })
@@ -22,6 +23,7 @@ routes.post('/create-new-event',
 
 routes.put('/join-event',
     mwAuth.tokenValidation,
+    joinEvnt.checkJoiningParticipants,
     events.joinEvent
 )
 

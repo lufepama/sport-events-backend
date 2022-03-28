@@ -4,7 +4,9 @@ module.exports = (mongoose) => {
         username: { type: String, require: true, unique: true },
         password: { type: String },
         firstName: { type: String },
-        lastName: { type: String }
+        lastName: { type: String },
+        email: { type: String },
+        gender: { type: String },
     },
         { timestamps: true } //It will create createdAt and updatedAt automatically
     )
