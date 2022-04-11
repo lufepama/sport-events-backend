@@ -75,7 +75,7 @@ app.use('/api/conversations', conversationRoutes);
 app.use('/api/messages', messagesRoutes)
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
+    console.log('a user has been connected');
 });
 
 server.listen(PORT, () => {
