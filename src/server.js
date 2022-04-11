@@ -6,6 +6,9 @@ const conversationRoutes = require('./routes/conversations')
 const messagesRoutes = require('./routes/messages')
 const db = require('./database/models/index');
 
+const http = require('http');
+const { Server } = require("socket.io");
+
 const cors = require('cors')
 // ******END IMPORTS********
 
@@ -16,6 +19,15 @@ const PORT = 8080
 
 // Middlewares used in app instance
 const app = express()
+const server = http.createServer(app);
+const io = require('socket.io')(server, {
+    cors: {
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"]
+    }
+})
+
+
 const corsOptions = {
     origin: "*",
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -62,8 +74,11 @@ app.use('/api/users', userRoutes);
 app.use('/api/conversations', conversationRoutes);
 app.use('/api/messages', messagesRoutes)
 
+io.on('connection', (socket) => {
+    console.log('a user connected');
+});
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Running the app on PORT  ${PORT}`)
 
 })
