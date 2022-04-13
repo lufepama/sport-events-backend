@@ -7,6 +7,11 @@ module.exports = (mongoose) => {
         lastName: { type: String },
         email: { type: String },
         gender: { type: String },
+        contactList: [{
+            contactId: String,
+            username: String,
+            roomId: String,
+        }]
     },
         { timestamps: true } //It will create createdAt and updatedAt automatically
     )

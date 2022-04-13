@@ -76,6 +76,7 @@ exports.tokenValidation = async (req, res, next) => {
 
     const userToken = req.headers['x-access-token']
 
+
     if (!userToken) {
         return res.status(403).send({ message: "No token provided!" });
     }

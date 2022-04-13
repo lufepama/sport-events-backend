@@ -14,7 +14,6 @@ routes.put('/reset-password',
     controller.resetPassword
 )
 
-
 routes.get('/logout', (req, res) => {
     res.status(200).json({ message: 'There you have the user' })
 })

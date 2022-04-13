@@ -2,7 +2,7 @@
 const express = require('express');
 const eventRoutes = require('./routes/events');
 const userRoutes = require('./routes/users')
-const conversationRoutes = require('./routes/conversations')
+const chatRoutes = require('./routes/chat')
 const messagesRoutes = require('./routes/messages')
 const db = require('./database/models/index');
 
@@ -64,18 +64,32 @@ app.use(function (req, res, next) {
 
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow', true);
 
     // Pass to next layer of middleware
     next();
 });
 app.use('/api/events', eventRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/conversations', conversationRoutes);
+app.use('/api/chat', chatRoutes);
 app.use('/api/messages', messagesRoutes)
 
 io.on('connection', (socket) => {
-    console.log('a user has been connected');
+
+    //TODO: Add connection activity --> Show green circle
+
+    socket.on('joinChatRoom', ({ roomId }) => {
+
+        socket.join(roomId)
+
+        io.to(roomId).emit('message',)
+
+        socket.on('newChatMessage', (message, roomId, username) => {
+            const user = {}
+        })
+
+    })
+
 });
 
 server.listen(PORT, () => {
