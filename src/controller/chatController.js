@@ -13,7 +13,6 @@ exports.getContactList = async (req, res) => {
             if (err) {
                 return res.status(400).json({ message: 'Ha habido un problema...', error: err })
             }
-            console.log(user)
             return res.status(200).json({ message: 'Todo ha ido bien...', contactList: user[0].contactList })
         })
 
@@ -42,33 +41,30 @@ exports.getRoomConversation = async (req, res) => {
 
 }
 
-exports.putMessageChatRoom = async (req, res) => {
+exports.postMessageChatRoom = async (req, res) => {
 
     try {
         const data = req.body
-        console.log('data', data)
         const mssg = {
             userSender: data.userSender,
             userReceiver: data.userReceiver,
-            message: data.message
+            message: data.message,
+            datetime: data.datetime
         }
 
-        const res = await Room.findOneAndUpdate(
+        await Room.findOneAndUpdate(
             { chatRoomId: data.roomId },
             {
                 $push: {
                     conversation: mssg
                 }
-            }, (err, succ) => {
-                console.log(succ)
-            }
-        )
+            }).exec()
 
-
-        res.status(200).json({ message: 'Todo ha ido bien...' })
+        return res.status(200).json({ message: 'Todo ha ido bien...' })
 
     } catch (error) {
-        res.status(400).json({ message: 'Ha habido un problema...' })
+        console.log('err', error)
+        return res.status(400).json({ message: 'Ha habido un problema...' })
 
     }
 

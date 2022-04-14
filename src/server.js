@@ -5,6 +5,7 @@ const userRoutes = require('./routes/users')
 const chatRoutes = require('./routes/chat')
 const messagesRoutes = require('./routes/messages')
 const db = require('./database/models/index');
+const { getMessageByDatetime } = require('./utils/message')
 
 const http = require('http');
 const { Server } = require("socket.io");
@@ -78,16 +79,11 @@ io.on('connection', (socket) => {
 
     //TODO: Add connection activity --> Show green circle
 
-    socket.on('joinChatRoom', ({ roomId }) => {
-
+    socket.on('joinChatRoom', ({ roomId, username }) => {
         socket.join(roomId)
-
-        io.to(roomId).emit('message',)
-
-        socket.on('newChatMessage', (message, roomId, username) => {
-            const user = {}
-        })
-
+    })
+    socket.on('chatMessage', async (lastMessage) => {
+        io.to(lastMessage.roomId).emit('reschatMessage', lastMessage)
     })
 
 });

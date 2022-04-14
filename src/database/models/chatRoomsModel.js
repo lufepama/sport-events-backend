@@ -7,7 +7,8 @@ module.exports = (mongoose) => {
             {
                 userSender: String,
                 userReceiver: String,
-                message: String
+                message: String,
+                datetime: String
             }
         ]
 

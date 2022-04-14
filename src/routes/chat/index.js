@@ -15,7 +15,7 @@ routes.get('/get-conversation/:roomId',
 
 routes.post('/send-message',
     mwAuth.tokenValidation,
-    routesChat.putMessageChatRoom
+    routesChat.postMessageChatRoom
 )
 
 module.exports = routes
